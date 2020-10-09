@@ -1,26 +1,27 @@
-var mongoose	= require("mongoose");
+var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 
 var OrderSchema = new mongoose.Schema({
-    blockToDeliver: String,
-    cardName : String,
-    cardNumber: Number,
-    cvv: Number,
-    expireMonth:Number,
-    expireYear:Number,
-	items:Object,
-    createdAt: String,
-    author:{
-		id:{
-			type:mongoose.Schema.Types.ObjectId,
-			ref:"User"
-		},
-		username:String
+  blockToDeliver: String,
+  cardName: String,
+  cardNumber: Number,
+  cvv: Number,
+  expireMonth: Number,
+  expireYear: Number,
+  items: Object,
+  status: String, 
+  createdAt: String,
+  author: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     },
-    price:Number
+    username: String
+  },
+  price: Number
 });
 
 OrderSchema.plugin(passportLocalMongoose);
 
-module.exports=mongoose.model("Order",OrderSchema);
+module.exports = mongoose.model("Order", OrderSchema);

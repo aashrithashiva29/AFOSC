@@ -17,12 +17,17 @@ router.get("/", function(req,res,next){
 router.post("/",function(req,res){
     var cart = new Cart(req.session.cart);
     var arr = Object.values(cart.items);
-    console.log(arr)
+    // console.log(arr)
     let items=[]
     for(i of arr){
-        items.push(i.item.name)
+        let p = {
+            name: i.item.name,
+            price: i.price,
+            quantity:i.quantity
+        }
+        items.push(p)
     }
-    console.log(items)
+    // console.log(items)
     // get data from form to post
     Date.prototype.toShortFormat = function() {
 
@@ -51,6 +56,7 @@ router.post("/",function(req,res){
         expireMonth:req.body.expireMonth,
         expireYear:req.body.expireYear,
         items:items,
+        status:"ordered",
         createdAt:date,
         author : {
             id:req.user._id,
@@ -60,16 +66,16 @@ router.post("/",function(req,res){
 
     };
 
-    // Order.create(newOrder, function(err){
-	// 	if(err)
-	// 		console.log(err);
-	// 	else{
-    //         req.session.cart=null
-    //         // redirect to track page
-	// 		res.redirect("/items");
-    //     }
+    Order.create(newOrder, function(err){
+		if(err)
+			console.log(err);
+		else{
+            req.session.cart=null
+            // redirect to track page
+			res.redirect("cart/trackPage");
+        }
 			
-	// });
+	});
 
     
 	

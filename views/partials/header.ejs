@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-	ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<!-- google fonts 	 -->
 	<link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
 							<a class="nav-link" href="/login">Login </a>
 						</li>
 						<% }else{ %>
-							<li class="nav-item" style="float:left; !important">
+							<li class="nav-item" style="float:left !important">
 								<a class="nav-link" href="#">Signed In as
 									<%= currentUser.username %>
 								</a>
@@ -58,10 +58,12 @@
 							<% }else{ %>
 							<li class="nav-item">
 								<a class="nav-link" href="/cart">
-									My Cart (
+									My Cart 
 									<% if(session.cart){ %>
-									<span class="badge"><%= session.cart.totalItems || "0" %></span>
-									<% }else{ %> 0 <% } %> )
+										<span class="badge badge-pill badge-success"><%= session.cart.totalItems || "0" %></span>
+									<% }else{ %> 
+										<span class="badge badge-pill badge-success"></span>
+									<% } %> 
 								</a>
 								
 							</li>

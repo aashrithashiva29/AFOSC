@@ -13,6 +13,24 @@ router.get("/", function(req,res,next){
 	
 });
 
+router.get("/:id/dispatched",function(req,res){
+	Order.where({_id:req.params.id}).updateOne({status:"dispatched"}).exec();
+	req.flash("success","Order status updated!");
+	res.redirect('back');
+
+});
+
+router.get("/:id/reached",function(req,res){
+	Order.where({_id:req.params.id}).updateOne({status:"reached"}).exec();
+	req.flash("success","Order status updated!");
+	res.redirect('back');
+});
+
+router.get("/:id/delivered",function(req,res){
+	Order.where({_id:req.params.id}).updateOne({status:"delivered"}).exec();
+	req.flash("success","Order status updated!");
+	res.redirect('back');
+});
 
 
 module.exports = router;
