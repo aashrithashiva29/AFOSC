@@ -1,0 +1,32 @@
+<%- include ("../partials/header") %>
+<div class="container">
+	
+		<h1 class="my-4" style="text-align:center;">Give Feedback</h1>
+		<div style="width: 40%; margin:40px auto">
+			<form action="/feedback" method="POST">
+				<div class="form-group">
+					<textarea class="form-control" type="text" name="text" placeholder="Feedback"></textarea>
+				</div>
+				<div class="form-group">
+    				<label for="exampleFormControlSelect2">Rating</label>
+    					<select multiple name="rating" class="form-control">
+      						<option>1</option>
+      						<option>2</option>
+     						<option>3</option>
+     			 			<option>4</option>
+      						<option>5</option>
+    					</select>
+  				</div>
+
+				<div class="form-group">
+					<button class="btn btn-primary btn-lg btn-block">Submit</button>
+				</div>
+			</form>
+		</div>
+		<div style="width: 30%; margin:0 auto">
+			<a href="/items">Go Back</a>
+		</div>
+	
+</div>
+
+<%- include ("../partials/footer") %>

@@ -1,0 +1,33 @@
+<%- include ("../partials/header") %>
+<div class="container">
+	
+		<h1 class="my-4" style="text-align:center;">Add a New Item</h1>
+		<div style="width: 40%; margin:40px auto">
+			<form action="/items" method="POST">
+				<div class="form-group">
+					<input class="form-control" type="text" name="name" placeholder="Item Name">	
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="number" name="price" placeholder="Price" min="1" step="1">	
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="image" placeholder="Img URL">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="typeOfItem" placeholder="Type Of Item">
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" type="text" name="description" placeholder="About Item"></textarea>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-lg btn-block">Submit</button>
+				</div>
+			</form>
+		</div>
+		<div style="width: 30%; margin:0 auto">
+			<a href="/items">Go Back</a>
+		</div>
+	
+</div>
+
+<%- include ("../partials/footer") %>

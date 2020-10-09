@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../stylesheets/login.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha256-0rguYS0qgS6L4qVzANq4kjxPLtvnp5nn2nB5G1lWRv4=" crossorigin="anonymous"></script>
+		
+			
+	</head>
+	<body>
+		<div class="container">
+		<% if(error && error.length > 0){  %>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<%= error %>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+			<% } %>
+				<% if(success && success.length > 0){  %>
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<%= success %>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<% } %>
+	</div>
+		<div class="loginbox">
+			<img src="https://img.icons8.com/plasticine/2x/user.png" class="user">
+			<h1>Login</h1>
+			<form action="/login" method="POST">
+				<input type="text" name="username" placeholder="Username">
+				<input type="password" name="password" placeholder="Password">
+				<input type="submit" value="Login">
+			</form>
+			<p>New User?<a href="/register" style="color:crimson">&nbsp; Sign Up</a></p>
+		</div>
+		</body>
+		</html>
+
+<%- include ("./partials/footer") %> 

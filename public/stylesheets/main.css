@@ -1,0 +1,61 @@
+*{
+	font-family:candara;
+}
+
+.card-img{
+	height:220px;
+} 
+.anime:hover{
+	transition:0.5s ease;
+    transform: scale(1.1);
+}
+
+.buttn{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+	font-style:oblique;
+}
+.buttn:hover{
+	color:blue;
+	text-decoration:underline;
+}
+
+.abuttn{
+	color:black;
+    cursor:pointer;
+    text-decoration:none;
+	font-style:oblique;
+}
+.abuttn:hover{
+	color:blue;
+	text-decoration:underline;
+}
+
+.grad{
+	background: #000000;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to top, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to top, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	color:white;
+
+}
+
+.pfont{
+	font-family: 'Chau Philomene One', sans-serif;
+	color: #f8b195;
+	font-weight:800
+}
+
+h2{
+	color:#FF4136
+}
+
+.bgstyle{
+	padding-top:10px;
+	padding-bottom:10px;
+	background: -webkit-linear-gradient(to top, #F15F79, #B24592);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to top, #F15F79, #B24592); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}

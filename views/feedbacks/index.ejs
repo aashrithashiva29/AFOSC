@@ -1,0 +1,53 @@
+<%- include("../partials/header") %>
+	<div class="container">
+		<h2 class="my-3">Feedbacks</h2>
+		<a class="btn btn-primary btn-md mb-2" href="/feedback/new">Give Feedback</a>
+
+		<% feedbacks.forEach(function(feedback){ %>
+			<div class="shadow anime">
+				<div class="container mt-5">
+					<div class='mt-5'>
+						<span class="float-left">
+							<h5>
+								<%= feedback.author.username %>
+							</h5>
+						</span>
+						<span class="float-right">
+							<%= moment(feedback.createdAt).fromNow()  %>
+						</span>
+					</div>
+					<br>
+					<p>
+						<%= feedback.text %>
+					</p>
+					<p>
+						<% for(i=0;i<feedback.rating;i++){ %>
+							<i class="fas fa-star"></i>
+						<% } %>
+						<% for(i=feedback.rating;i<5;i++){ %>
+							<i class="far fa-star"></i>
+						<% } %>
+						
+					</p>
+					<hr class="my-4">
+
+					<% if(currentUser && feedback.author.id.equals(currentUser._id)){ %>
+					<div>
+						<span>
+							<a class="abuttn float-left" href="/feedback/<%= feedback._id %>/edit">Edit</a>
+						</span>
+						<span>
+							<form action="feedback/<%= feedback._id %>?_method=delete" method="POST">
+								<input type="submit" class="buttn" value="Delete">
+							</form>
+						</span>
+					</div>
+					<% } %>
+				</div>
+
+			</div>
+			<% }); %>
+
+	</div>
+
+	<%- include("../partials/footer") %>

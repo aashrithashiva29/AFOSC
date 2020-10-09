@@ -1,0 +1,62 @@
+<%- include ("../partials/header") %>
+
+	<div class="container">
+		<% if(typeof items === "undefined"){ %>
+		<h1>
+			Your cart is empty !!
+		</h1>
+		<% }else{ %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Image</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(i=0;i<items.length;i++){ %>
+					<tr>
+						<th scope="row">
+							<%= items[i].item.name %>
+						</th>
+						<td>
+							<img width="100px" height="100px" src="<%= items[i].item.image %>">
+						</td>
+						<td>
+							<%= items[i].quantity %>
+						</td>
+						<td>
+							<%= items[i].price %>
+						</td>
+						<td>
+							<a href="cart/add-to-cart/<%= items[i].item._id %>">+</a>/
+							
+							<a href="cart/remove-from-cart/<%= items[i].item._id %>">-</a>
+							
+						</td>
+					</tr>
+				<% } %>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Total Price:</td>
+					<td></td>
+					<td></td>
+					<td>
+						<%= totalPrice %>
+					</td>
+				</tr>
+					
+			</tbody>
+		</table>
+		
+		<a href="/items" class="btn btn-dark">Add more items</a>
+		<a href="/checkout" class="btn btn-dark">Pay</a>
+		
+		<% } %>
+		
+		<a href="/items" class="btn btn-secondary btn-outline">Go back</a>
+	</div>

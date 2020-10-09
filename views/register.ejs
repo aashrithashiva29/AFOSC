@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/stylesheets/login.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha256-0rguYS0qgS6L4qVzANq4kjxPLtvnp5nn2nB5G1lWRv4=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+		<% if(error && error.length > 0){  %>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<%= error %>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+			</div>
+			<% } %>
+				<% if(success && success.length > 0){  %>
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<%= success %>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+					</div>
+					<% } %>
+	</div>
+		<div class="loginbox">
+			<img src="https://img.icons8.com/plasticine/2x/user.png" class="user">
+			<h1>Sign Up</h1>
+			<form action="/register" method="POST">
+				<input type="text" name="userid" placeholder="User Id" >
+				<div class="invalid-feedback">
+         			 Please choose a userid.
+        		</div>
+				<input type="text" name="username" placeholder="UserName" >
+				<div class="invalid-feedback">
+          			Please choose a username.
+        		</div>
+				<input type="password" name="password" placeholder="Password" required>
+				<!-- <input type="password" name="cnfrmpassword" placeholder="confirm Password"> -->
+				<input type="number"  name="mobileno" placeholder="Mobile number" required>
+				<input type="email" name="email"  placeholder="Email" required>
+				
+				<input type="text" name="adminCode" placeholder="Admin Code">
+				<p>
+				Student	<input type="radio" id="student" name="typeOfUser" value="student" required>
+				Faculty <input type="radio" id="faculty" name="typeOfUser" value="faculty" required>
+				Admin <input type="radio" id="Admin" name="typeOfUser" value="admin" required> 
+				</p>
+				<input type="submit" value="Sign Up">
+			</form>
+			
+			<p>Already a user ? <a href="/login" style="color:crimson"> &nbsp; Login</a></p>
+		</div>
+		
+<%- include ("./partials/footer") %>

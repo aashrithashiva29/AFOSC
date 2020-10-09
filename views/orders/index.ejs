@@ -1,0 +1,30 @@
+<%- include ("../partials/header") %>
+
+<div class="container my-5">
+    <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Customer</th>
+            <th scope="col">blockToDeliver</th>
+            <th scope="col">Status</th>
+            <th scope="col">Placed at</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            <% orders.forEach(function(order){ %>
+                <tr>
+                    <th><%= order._id %></th>
+                    <th><%= order.author.username %></th>
+                    <th><%= order.blockToDeliver %></th>
+                    <th></th>
+                    <th><%= order.createdAt %></th>
+                </tr>
+            <% }) %>
+        </tbody>
+      </table>
+      
+</div>
+
+<%- include ("../partials/footer") %>

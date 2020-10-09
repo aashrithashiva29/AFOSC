@@ -1,0 +1,433 @@
+<%- include("../partials/header") %>
+ 
+<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+     <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(88).jpg" class="my-2 d-block w-100 " alt="Img 1">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="pfont">Welcome to BrewHub!!!</h3>
+        <p class="pfont">The chief ingredient in our food is love</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).jpg" class="my-2 d-block w-100 " alt="Img 2">
+      <div class="carousel-caption d-none d-md-block">
+		  <h3 class="pfont">Order our Love !!</h3>
+        <p class="pfont">Good food never fail in bringing people together.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(121).jpg" class="my-2 d-block w-100" alt="Img 3">
+      <div class="carousel-caption d-none d-md-block">
+        <h3 class="pfont">Celebrate the life !!</h3>
+        <p class="pfont">For some reason, food tastes better when it’s somebody‘s treat.</p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<% if(currentUser && currentUser.isAdmin){ %>
+<div class="container">
+	<p>
+		<a class="btn btn-primary btn-lg d-flex justify-content-center" href="/items/new" >Add a New Item</a>
+	</p>
+</div>
+<% } %>	
+
+<section class="container my-5">
+	<div class="text-center ">
+		<b><h2>Menu</h2></b>
+    	<hr>
+	</div>
+		<div class="row bgstyle">
+			
+                <div class="col-md-4">
+                    <a class="text-center text-light" href="#breakfast"><h3>Breakfast</h3></a>
+                </div>
+
+                <div class="col-md-4  align-items-center">
+					<a class="text-center text-light" href="#maincourse"><h3>Main Course</h3></a>
+                </div>
+
+                <div class="col-md-4  align-items-center">
+					<a class="text-center text-light" href="#biryanis"><h3>Biryanis</h3></a>
+                </div>
+
+                <div class="col-md-4  align-items-center">
+					<a  class="text-center text-light"  href="#desserts"><h3>Desserts</h3></a>
+                </div>
+
+                <div class="col-md-4  align-items-center">
+					<a class="text-center text-light" href="#icecreams"><h3>Icecreams</h3></a>
+                </div>
+
+                <div class="col-md-4  align-items-center">
+					<a class="text-center text-light" href="#cooldrinks"><h3>Cool Drinks</h3></a>
+                </div>
+			
+		</div>
+	
+</section>
+
+<section id="breakfast">
+<div class="container">
+	<div>
+		<h2 class="text-center">Breakfast</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "breakfast"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+
+<section id="maincourse">
+<div class="container">
+	<div>
+		<h2 class="text-center">Main Course</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "maincourse"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+
+
+<section id="biryanis">
+<div class="container">
+	<div>
+		<h2 class="text-center">Biryanis</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "biryani"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+
+
+<section id="desserts">
+<div class="container">
+	<div>
+		<h2 class="text-center">Desserts</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "desserts"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+
+
+<section id="icecreams">
+<div class="container">
+	<div>
+		<h2 class="text-center">Ice creams</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "icecream"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+
+<section id="cooldrinks">
+<div class="container">
+	<div>
+		<h2 class="text-center">Cool Drinks</h2>
+	</div>
+	<hr>
+	<div class="row">
+		<% items.forEach(function(item){ %>
+			<% if(item.typeOfItem.toLowerCase() === "cooldrinks"){ %>
+			<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+				<div class="card-deck anime align-items-center">
+					<div class="card shadow" style="width: 18rem; margin-top:10px;">
+   						<img src="<%= item.image %>" class="card-img card-img-top" alt="...">
+  						<div class="card-body bg-light text-dark text-center">
+    						<h5 class="card-title"><%= item.name %></h5>
+    						<p class="card-text"><%= item.description %></p>
+							<div class="card-text">
+								<span class="float-left ">
+									<b>Price:</b>
+								</span>
+								<span class="float-right ">
+									<b><%= item.price %>&#8377;</b>
+								</span>
+							</div><br>
+							<a class="btn btn-dark my-3" href="/cart/add-to-cart/<%= item._id %>">Add to cart</a>
+							<br>
+							<div class="float-right">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+							</div>
+							<br>
+							<% if(currentUser && currentUser.isAdmin){ %>
+							<div>
+								<span><a class="float-left abuttn" href="/items/<%=item._id %>/edit">Edit</a></span>
+								<span class="float-right"><form action="/items/<%= item._id %>?_method=delete" method="POST">
+									<input type="submit" class="buttn" value="Delete">
+								</form>
+								</span>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	<% }); %>
+	</div>
+</div>
+</section>
+	
+	
+<section>
+<div style="background-color: #1b1b1b; color:white">
+	<div class="container text-center">
+		<!-- <img class="my-3" width="100px" height="100px" src="https://i.pinimg.com/564x/02/8e/cf/028ecf0679104cfec9bf3ed801881b90.jpg"> -->
+		
+		 <img class="my-3" width="120px" height="100px" src="logo/logo.jpg">
+		
+		<h1>BrewHub</h1>
+		<p>The cheif ingridient of our food is love !!</p>
+		
+		<a href="/items" class="btn btn-light">Order our love</a>
+		<br><br>
+		<p>follow us on - <i class="fab fa-instagram"></i>   &nbsp; 
+			<i class="fab fa-facebook"></i>  &nbsp;
+			<i class="fab fa-twitter"></i>  &nbsp;
+		</p><hr style="border-color:white">
+		<p class="mb-2">
+			<b>Contact Info: </b><br> brewhub03@gmail.com <br> +91-7634532753 <br><br>
+		</p>
+	</div>
+	
+</div>
+</section>
+<div>
+	<p class="text-center"> Copyright &copy; BrewHub 2020 .All rights reserved</p>
+</div>
+ 
+<%- include ("../partials/footer") %>

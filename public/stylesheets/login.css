@@ -1,0 +1,126 @@
+body{
+	/* margin:0;
+	padding:0;
+	background:url("https://live.staticflickr.com/1503/23394771454_0688f7f317_b.jpg");
+	background-size:cover;
+	font-family:sans-serif;
+	opacity:0.5; */
+	
+    /*background:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe47d5sFjN0_H09CBGF9OzyWNrH95QooNQQiFyb-0BlaQF8KV2&s");*/
+    
+	/* color:black;
+	position: fixed;
+  	display: table;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100vh;
+	background-color:#ffffff;
+  	background-size: cover; */
+	
+	position: relative;
+  	width: 100%;
+  	height: 100vh;
+  	display: table;
+  	z-index: -1;
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 100vh;
+	background-size: cover;
+	/* background-image:url("https://cdn.hipwallpaper.com/m/92/18/b42iYx.png"); */
+	background-image:url("https://cdn.hipwallpaper.com/m/31/25/SkRMHl.jpg");
+
+/* height:80vh; */
+  /* background-position:center center; */
+}
+.loginbox{
+	position:absolute;
+	margin-top:10px;
+	top:50%;
+    left:50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transform: translate(-50%,-50%);
+	width:350px;
+	padding:50px 40px;
+    box-sizing:border-box;
+    border-radius: 5px;
+	background:rgba(255,255,255);
+}
+h1{
+	margin-bottom:10px;
+	padding:0 0 18px;
+	color:#272340;
+	text-align:center;
+    /*font-family:candara;*/
+    
+    font-weight: 400;
+}
+.loginbox p{
+	margin:0;
+	padding:0;
+	color:#41392a;
+	font-weight:bold;
+	font-family:candara;
+}
+
+.loginbox input{
+	width:100%;
+	margin-bottom:20px;
+}
+.loginbox input[type="text"] ,.loginbox input[type="password"], .loginbox input[type="number"] ,.loginbox input[type="email"]  {
+	border:none;
+	border-bottom:1px solid #000000;
+	background:transparent;
+	outline:none;
+	height:28px;
+	color: #000000;
+	font-size:15px;
+	
+}
+.loginbox input[type="radio"]{
+	width: 2rem;
+	margin:0;
+}
+.loginbox input[type="submit"] {
+	border:none;
+	outline:none;
+	height:45px;
+	color:whitesmoke;
+	font-size:15px;
+    background:rgb(86, 86, 243);
+    margin-top: 20px;
+	cursor:pointer;
+	border-radius:2px;
+}
+
+
+.loginbox input[type="submit"]:hover{
+	background:rgb(86, 86, 243);
+	color:whitesmoke
+}
+.loginbox a{
+	color: rgb(0, 0, 0);
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.loginbox a:hover{
+	color:black;
+}
+::placeholder{
+	color:gray;
+}
+
+/*avatar logo*/
+.user{
+	width:100px;
+	height:100px;
+	border-radius:50%;
+	position:absolute;
+	overflow:hidden;
+	top:calc(-100px/2);
+	left:calc(50% - 50px);
+}
+
