@@ -72,13 +72,12 @@ router.post("/",function(req,res){
 		else{
             req.session.cart=null
             // redirect to track page
-			res.redirect("cart/trackPage");
+			res.redirect("/items");
         }
 			
 	});
-
-    
 	
 });
+
 
 module.exports = router;

@@ -7,7 +7,7 @@
             <th scope="col">Order</th>
             <th scope="col">Customer</th>
             <th scope="col">blockToDeliver</th>
-            <th scope="col">Status</th>
+           <% if(currentUser.isAdmin){ %> <th scope="col">Status</th> <% } %>
             <th scope="col">Placed at</th>
           </tr>
         </thead>
@@ -15,9 +15,11 @@
             
             <% orders.forEach(function(order){ %>
                 <tr>
-                    <th><%= order._id %></th>
+                  <% if(order.status === "delivered"){ %> <th><%= order._id %></th> <% } else{ %>
+                    <th><a href="/orders/<%= order._id %>" style="font-family: 'Courier New', Courier, monospace;"><%= order._id %></a></th> <% } %>
                     <th><%= order.author.username %></th>
                     <th><%= order.blockToDeliver %></th>
+                    <% if(currentUser.isAdmin){ %>
                     <th>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -30,6 +32,7 @@
                         </div>
                       </div>
                     </th>
+                    <% } %>
                     <th><%= order.createdAt %></th>
                 </tr>
             <% }) %>
