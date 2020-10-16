@@ -1,75 +1,124 @@
 <%- include ("../partials/header") %>
 
 <div class="container">
-    <h1>Proceed to pay <%= totalPrice %>Rs...</h1>
-    <form action="/checkout" method="POST" blockToDeliver3">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required>
-          </div>
-        </div>
-        <fieldset class="form-group">
-            <div class="row">
-              <legend class="col-form-label col-sm-2 pt-0">Block to deliver</legend>
-              <div class="col-sm-10">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="blockToDeliver" id="north" value="North" checked>
-                  <label class="form-check-label" for="north">
-                    North Block
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="blockToDeliver" id="south" value="South">
-                  <label class="form-check-label" for="south">
-                    Soth Block
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="blockToDeliver" id="west" value="West">
-                  <label class="form-check-label" for="west">
-                    West Block
-                  </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="blockToDeliver" id="east" value="East">
-                    <label class="form-check-label" for="east">
-                      East Block
-                    </label>
-                  </div>
-              </div>
-            </div>
-          </fieldset>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="cardName">Name(as on credit card)</label>
-                <input type="text" class="form-control" id="cardName" name="cardName" placeholder="John Duckett" required>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="creditNumber">Credit Card Number</label>
-                <input type="number" class="form-control" id="creditNumber" name="cardNumber" placeholder="4242 4242 4242 4242" required>
-              </div>
+  <h1>Proceed to pay <%= totalPrice %>Rs...</h1>
+  <form action="/checkout" method="POST" blockToDeliver3">
+    <div class="form-group row col-md-6 ">
+      <label for="Amount bg-light">Total Amout</label>
+      <input type="text" readonly class="form-control bg-light" id="amount" name="amount" value="<%= totalPrice %>"
+        required style="cursor: not-allowed;">
+    </div>
+    <div class="form-row">
 
+      <div class="form-group col-md-6">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required value="<%= currentUser.username %>">
+      </div>
+      <div class="form-group col-md-6" style="visibility: hidden;">
+        <label for="phone">Phone</label>
+        <input type="phone" class="form-control" id="phone" name="phone" required value="<%= currentUser.mobile %>">
+      </div>
+    </div>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Block to deliver</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="blockToDeliver" id="north" value="North" checked>
+            <label class="form-check-label" for="north">
+              North Block
+            </label>
           </div>
-        
-        <div class="form-row">  
-          <div class="form-group col-md-4">
-            <label for="cvv">CVV</label>
-            <input type="number" class="form-control" id="cvv" name="cvv" placeholder="012" required>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="blockToDeliver" id="south" value="South">
+            <label class="form-check-label" for="south">
+              Soth Block
+            </label>
           </div>
-          <div class="form-group col-md-4">
-            <label for="expireMonth">Expiration Month</label>
-            <input type="number" class="form-control" name="expireMonth" id="expireMonth" placeholder="01" required>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="blockToDeliver" id="west" value="West">
+            <label class="form-check-label" for="west">
+              West Block
+            </label>
           </div>
-          <div class="form-group col-md-4">
-            <label for="expireYear">Expiration Year</label>
-            <input type="number" class="form-control" id="expireYear" name="expireYear" placeholder="2021" required>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="blockToDeliver" id="east" value="East">
+            <label class="form-check-label" for="east">
+              East Block
+            </label>
           </div>
         </div>
-        
-        <button type="submit" class="btn btn-primary">Proceed</button>
-      </form>
+      </div>
+    </fieldset>
+    <div class="form-row">
+
+      <!-- <div class="form-group col-md-6">
+        <label for="cardName">Name(as on credit card)</label>
+        <input type="text" class="form-control" id="cardName" name="name" placeholder="John Duckett" required>
+      </div> -->
+
+      <div class="form-group col-md-5">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Johnduckett@gmail.com" required
+          value="<%= currentUser.email %>">
+      </div>
+
+      <br>
+      <div class="form-group col-md-6  bg-ligh">
+
+        <div id="card-element" class="col-md-4  text-primary bg-light "></div>
+        <div id="card-errors" role="alert"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Proceed</button>
+  </form>
 
 </div>
-<script src="https://js.stripe.com/v2/"></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript" src="../../public/clientscripts/checkout.js"></script>
+<script>
+
+  // var stripe = Stripe('pk_test_51H7gTXJPyl22FwkuP6ipydtphj3EyL9fudMaxTVYQ5sWrC92V25ePbamrc5GGqEqYT9PYJmTx4v79LdINS64fIqV00SgS0hjIa');
+
+  const stripe = Stripe('pk_test_51H7gTXJPyl22FwkuP6ipydtphj3EyL9fudMaxTVYQ5sWrC92V25ePbamrc5GGqEqYT9PYJmTx4v79LdINS64fIqV00SgS0hjIa');
+  // Your Publishable Key
+  const elements = stripe.elements();
+
+  // Create our card inputs
+  var style = {
+    base: {
+      color: "#fff"
+    }
+  };
+
+  const card = elements.create('card', { style });
+  card.mount('#card-element');
+
+  const form = document.querySelector('form');
+  const errorEl = document.querySelector('#card-errors');
+
+  // Give our token to our form
+  const stripeTokenHandler = token => {
+    const hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    form.submit();
+  }
+
+  // Create token from card data
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    stripe.createToken(card).then(res => {
+      if (res.error) errorEl.textContent = res.error.message;
+      else stripeTokenHandler(res.token);
+    })
+  })
+
+</script>
+
+
 <%- include ("../partials/footer") %>

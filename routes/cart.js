@@ -1,18 +1,18 @@
-var express		= require("express"),
-	router  	= express.Router(),
-	passport 	= require("passport"),
-	User		= require("../models/user"),
-	Item		= require("../models/items"),
-	Cart		= require("../models/cart"),
-	middleware	= require("../middleware");
+var express = require("express"),
+	router = express.Router(),
+	passport = require("passport"),
+	User = require("../models/user"),
+	Item = require("../models/items"),
+	Cart = require("../models/cart"),
+	middleware = require("../middleware");
 
-router.get("/", function(req,res,next){
-	if(!req.session.cart){
-		return res.render("cart/index",{products:null});
+router.get("/", function (req, res, next) {
+	if (!req.session.cart) {
+		return res.render("cart/index", { products: null });
 	}
 	var cart = new Cart(req.session.cart);
 	var arr = Object.values(cart.items);
-	res.render("cart/index",{items:arr,totalPrice:cart.totalPrice});
+	res.render("cart/index", { items: arr, totalPrice: cart.totalPrice });
 });
 
 
@@ -28,6 +28,9 @@ router.get("/add-to-cart/:id", function (req, res, next) {
 		req.session.cart = cart;
 		//console.log(req.session.cart);
 		res.redirect("back");
+		console.log(req.user);
+		console.log(req.user.username);
+		console.log(req.user.mobile);
 	})
 });
 
