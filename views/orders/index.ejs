@@ -1,44 +1,55 @@
 <%- include ("../partials/header") %>
 
 <div class="mx-5 mt-5">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Order</th>
-            <th scope="col">Customer</th>
-            <th scope="col">blockToDeliver</th>
-           <% if(currentUser.isAdmin){ %> <th scope="col">Status</th> <% } %>
-            <th scope="col">Placed at</th>
-          </tr>
-        </thead>
-        <tbody>
-            
-            <% orders.forEach(function(order){ %>
-                <tr>
-                  <% if(order.status === "delivered"){ %> <th><%= order._id %></th> <% } else{ %>
-                    <th><a href="/orders/<%= order._id %>" style="font-family: 'Courier New', Courier, monospace;"><%= order._id %></a></th> <% } %>
-                    <th><%= order.author.username %></th>
-                    <th><%= order.blockToDeliver %></th>
-                    <% if(currentUser.isAdmin){ %>
-                    <th>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <%= order.status %>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="/orders/<%= order._id %>/dispatched">dispatched</a>
-                          <a class="dropdown-item" href="/orders/<%= order._id %>/reached">Reached</a>
-                          <a class="dropdown-item" href="/orders/<%= order._id %>/delivered">Delivered</a>
-                        </div>
-                      </div>
-                    </th>
-                    <% } %>
-                    <th><%= order.createdAt %></th>
-                </tr>
-            <% }) %>
-        </tbody>
-      </table>
-      
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order</th>
+        <th scope="col">Customer</th>
+        <th scope="col">blockToDeliver</th>
+        <% if(currentUser.isAdmin){ %> <th scope="col">Status</th> <% } %>
+        <th scope="col">Placed at</th>
+        <th scope="col " class="text-danger">
+          Cancel order
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% orders.forEach(function(order){ %>
+      <tr>
+        <% if(order.status === "delivered" ||  order.status == "cancelled" ){ %> <th><%= order._id %></th> <% } else{ %>
+        <th><a href="/orders/<%= order._id %>"
+            style="font-family: 'Courier New', Courier, monospace;"><%= order._id %></a></th> <% } %>
+        <th><%= order.author.username %></th>
+        <th><%= order.blockToDeliver %></th>
+        <% if(currentUser.isAdmin){ %>
+        <th>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= order.status %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/orders/<%= order._id %>/dispatched">dispatched</a>
+              <a class="dropdown-item" href="/orders/<%= order._id %>/reached">Reached</a>
+              <a class="dropdown-item" href="/orders/<%= order._id %>/delivered">Delivered</a>
+            </div>
+          </div>
+        </th>
+        <% } %>
+        <th><%= order.createdAt %></th>
+        <% if(order.status === "delivered" || order.status === "cancelled"){ %> <th>
+          <p style="text-align: center;" class="text-info"><%= order.status %></p>
+        </th> <% } else{ %>
+        <th> <a href="/orders/<%= order._id %>/cancel" class="btn btn-danger">Cancel</a> </th>
+        <%  } %>
+
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
 </div>
 
 <%- include ("../partials/footer") %>
