@@ -1,22 +1,17 @@
 <%- include ("../partials/header") %>
 
-<div class="container">
+<div class="container my-5">
   <h1>Proceed to pay <%= totalPrice %>Rs...</h1>
   <form action="/checkout" method="POST" blockToDeliver3">
     <div class="form-group row col-md-6 ">
-      <label for="Amount bg-light">Total Amout</label>
+      <label for="Amount bg-light">Total Amount</label>
       <input type="text" readonly class="form-control bg-light" id="amount" name="amount" value="<%= totalPrice %>"
         required style="cursor: not-allowed;">
     </div>
     <div class="form-row">
-
-      <div class="form-group col-md-6">
+      <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" required value="<%= currentUser.username %>">
-      </div>
-      <div class="form-group col-md-6" style="visibility: hidden;">
-        <label for="phone">Phone</label>
-        <input type="phone" class="form-control" id="phone" name="phone" required value="<%= currentUser.mobile %>">
       </div>
     </div>
     <fieldset class="form-group">
@@ -32,7 +27,7 @@
           <div class="form-check">
             <input class="form-check-input" type="radio" name="blockToDeliver" id="south" value="South">
             <label class="form-check-label" for="south">
-              Soth Block
+              South Block
             </label>
           </div>
           <div class="form-check">
@@ -51,35 +46,25 @@
       </div>
     </fieldset>
     <div class="form-row">
-
-      <!-- <div class="form-group col-md-6">
-        <label for="cardName">Name(as on credit card)</label>
-        <input type="text" class="form-control" id="cardName" name="name" placeholder="John Duckett" required>
-      </div> -->
-
-      <div class="form-group col-md-5">
+      <div class="form-group col-md-6">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="Johnduckett@gmail.com" required
           value="<%= currentUser.email %>">
       </div>
-
-      <br>
-      <div class="form-group col-md-6  bg-ligh">
-
-        <div id="card-element" class="col-md-4  text-primary bg-light "></div>
+      <br/>
+      <br/>
+      <div class="form-group col-md-6">
+        <div id="card-element" class="text-primary"></div>
         <div id="card-errors" role="alert"></div>
       </div>
-
-      <button type="submit" class="btn btn-primary">Proceed</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Proceed</button>
   </form>
 
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript" src="../../public/clientscripts/checkout.js"></script>
 <script>
-
-  // var stripe = Stripe('pk_test_51H7gTXJPyl22FwkuP6ipydtphj3EyL9fudMaxTVYQ5sWrC92V25ePbamrc5GGqEqYT9PYJmTx4v79LdINS64fIqV00SgS0hjIa');
-
   const stripe = Stripe('pk_test_51H7gTXJPyl22FwkuP6ipydtphj3EyL9fudMaxTVYQ5sWrC92V25ePbamrc5GGqEqYT9PYJmTx4v79LdINS64fIqV00SgS0hjIa');
   // Your Publishable Key
   const elements = stripe.elements();
@@ -87,7 +72,8 @@
   // Create our card inputs
   var style = {
     base: {
-      color: "#fff"
+
+      color: "#000"
     }
   };
 
@@ -104,7 +90,6 @@
     hiddenInput.setAttribute('name', 'stripeToken');
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
-
     form.submit();
   }
 

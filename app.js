@@ -6,16 +6,12 @@ let express = require("express"),
 	passport = require("passport"),
 	methodOverride = require("method-override"),
 	LocalStrategy = require("passport-local"),
-	Feedback = require("./models/feedbacks"),
 	User = require("./models/user"),
-	Item = require("./models/items"),
-	fast2sms = require("fast-two-sms"),
 	flash = require("connect-flash");
 
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-// var opts = { region: "intl" }
-// text.account(8555071618, 'ordered')
+
 //require routes
 let indexRoutes = require("./routes/index"),
 	itemRoutes = require("./routes/items"),
@@ -93,24 +89,6 @@ app.use(session({
 
 
 //stripe create customer
-// var createCustomer = function () {
-// 	var param = {};
-
-// 	param.email = "hani@gmail.com";
-// 	param.name = "hani";
-// 	param.description = "test";
-
-// 	stripe.customers.create(param, function (err, done) {
-// 		if (err) {
-// 			console.log(err);
-// 		} if (done) {
-// 			console.log(done)
-// 		} else {
-// 			console.log("some error")
-// 		}
-// 	})
-// }
-
 // createCustomer();
 app.post("/charge", (req, res) => {
 	try {
@@ -157,37 +135,3 @@ app.listen(process.env.PORT || 3000, process.env.IP, function () {
 	console.log("Server has started");
 });
 
-
-
-// app.post("/charge", (req, res) => {
-// 	try {
-// 		stripe.customers
-// 			.create({
-// 				name: req.body.name,
-// 				email: req.body.email,
-// 				source: req.body.stripeToken
-// 			})
-// 			.then(customer =>
-// 				stripe.charges.create({
-// 					amount: req.body.amount * 100,
-// 					currency: "INR",
-// 					customer: customer.id,
-// 					description: 'food order',
-// 					shipping: {
-// 						name: req.body.name,
-// 						address: {
-// 							line1: '510 Townsend St',
-// 							postal_code: '500059',
-// 							city: 'HYDERABAD',
-// 							state: 'AP',
-// 							country: 'IN',
-// 						},
-// 					},
-// 				})
-// 			)
-// 			.then(() => res.render("completed.html"))
-// 			.catch(err => console.log(err));
-// 	} catch (err) {
-// 		res.send(err);
-// 	}
-// });

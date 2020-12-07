@@ -28,9 +28,6 @@ router.get("/add-to-cart/:id", function (req, res, next) {
 		req.session.cart = cart;
 		//console.log(req.session.cart);
 		res.redirect("back");
-		console.log(req.user);
-		console.log(req.user.username);
-		console.log(req.user.mobile);
 	})
 });
 

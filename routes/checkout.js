@@ -8,8 +8,6 @@ var fast2sms = require("fast-two-sms");
 var api = 'C24tnUhjNGYiWxkQmHpSRFgfluJszZ83OoDATv0VPwLI7Mb91KqK0ubBCLZOhr9Ps8XQWfgIedDEiGt1';
 
 
-
-
 //INDEX ROUTE
 router.get("/", function (req, res, next) {
     if (!req.session.cart) {
