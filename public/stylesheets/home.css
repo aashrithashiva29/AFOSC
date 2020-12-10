@@ -1,0 +1,187 @@
+body{
+    font-family: Candara, Verdana, Geneva, Tahoma, sans-serif;
+    color :#3c3e41;
+}
+#title{
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+    url(https://images.unsplash.com/photo-1447078806655-40579c2520d6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+    background-attachment: fixed;
+    background-size: cover ;
+    color:#fff;
+    position: relative;
+    /* height: 100vh; */
+    padding: 3rem;
+}
+
+.brew-hub{
+    animation: changeColor 10s infinite;
+}
+
+@keyframes changeColor{
+    0%{background: -webkit-linear-gradient(#0cebeb, #20e3b2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;}
+    25%{background: -webkit-linear-gradient(#06beb6, #48b1bf);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;}
+    50%{background: -webkit-linear-gradient(#1c92d2, #f2fcfe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;}
+    75%{background: -webkit-linear-gradient(#36d1dc, #5b86e5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;}
+    100%{background: -webkit-linear-gradient(#007991, #78ffd6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;}
+}
+
+h1{ 
+    font-weight: bold;
+    font-size: 60px;
+    font-family: 'Candara', sans-serif;
+    size: 3rem;
+    line-height: 1.5;
+}
+
+.container-fluid{
+    padding: 3% 15% 7%;
+    width: 80%;
+    height: 40rem;
+    box-shadow: 0 0 1rem 0 rgb(0, 0, 0,1);
+}
+
+.navbar{
+    padding: 0 0 4.5rem;
+}
+
+.navbar-brand {
+    font-family: "Candara";
+    font-size: 3rem;
+}
+
+.nav-item {
+    padding: 0 18px;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+}
+
+
+#features{
+    padding: 3% 15%;
+    background-color:white;
+    position: relative;
+}
+
+.f2{
+    text-align: center;
+    padding: 5%;
+}
+
+i{
+    color: #ef8172;
+    margin-bottom: 1rem;
+}
+
+i:hover{
+    color:#ff4a68
+}
+
+#testimonials {
+    background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.7)),url(https://images.unsplash.com/photo-1505616485412-adfcd5561e31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) no-repeat;
+    background-size: cover ;
+    text-align: center;
+    /* height: 70vh; */
+    color: white;
+}
+
+h2{
+    font-size: 3rem;
+    line-height: 1.5;
+}
+
+.testi{
+    width:10%;
+    height: 10%;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.carousel-item{
+    padding: 5% 15%;
+    text-align: center;
+}
+
+#pricing {
+    padding: 100px;
+    text-align: center;
+}
+
+/* .pri-col{
+    padding: 5% 5% 8%;
+} */
+
+.cardheight{
+    height: 140%;
+    background: #1FA2FF;  
+    background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);  
+    background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.5);
+    border-radius: 3%;
+}
+
+.cardImage {
+    height: 30%;
+    width: 30%;
+    border-radius: 100%;
+    margin-top: 2rem;
+}
+
+.movetext {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-device-width: )
+@media (max-device-width: 468px){
+    .container-fluid {
+        margin: 0 auto;
+        height: 90%;
+        width: 100%;
+        /* padding: 3%; */
+    }
+    .down {
+        text-align: center;
+        margin-top: 300px ;
+    }
+    .s{
+        width: 100%;
+        height: 30%;
+        margin-top: 50px;
+    }
+    .fsize{
+        font-size: 200%;
+    }
+    .fi{
+        font-size: 200%;
+    }
+    #testimonials {
+        background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.7)),url(https://images.unsplash.com/photo-1505616485412-adfcd5561e31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80) no-repeat;
+        background-size: cover;
+        text-align: center;
+        color: white;
+        height: 30vh;
+    }
+    #pricing {
+        text-align: center;
+        padding: 0 15%;
+    }
+    .mar{
+        margin: auto ;
+    }
+    .nav-link{
+        font-size: 300%;
+    }
+   
+}
