@@ -4,7 +4,7 @@ var express = require("express"),
 	middleware = require("../middleware");
 var fast2sms = require("fast-two-sms");
 
-var api = 'C24tnUhjNGYiWxkQmHpSRFgfluJszZ83OoDATv0VPwLI7Mb91KqK0ubBCLZOhr9Ps8XQWfgIedDEiGt1';
+var api = 'kdN4CQ5VigR6Y3IZc7O1PzsHjBp8vWtmeDGJ2LrbowXfxFKSq0FgieI7oknVUuTyKM4mLlX3BdYfcZxD1';
 
 
 router.get("/", function (req, res, next) {
