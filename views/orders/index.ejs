@@ -9,9 +9,11 @@
         <th scope="col">blockToDeliver</th>
         <% if(currentUser.isAdmin){ %> <th scope="col">Status</th> <% } %>
         <th scope="col">Placed at</th>
+        <% if(!currentUser.isAdmin){ %> 
         <th scope="col " class="text-danger">
           Cancel order
         </th>
+        <% } %>
       </tr>
     </thead>
     <tbody>
@@ -39,11 +41,13 @@
         </th>
         <% } %>
         <th><%= order.createdAt %></th>
+        <% if(!currentUser.isAdmin){ %> 
         <% if(order.status === "delivered" || order.status === "cancelled"){ %> <th>
           <p style="text-align: center;" class="text-info"><%= order.status %></p>
         </th> <% } else{ %>
         <th> <a href="/orders/<%= order._id %>/cancel" class="btn btn-danger">Cancel</a> </th>
         <%  } %>
+        <% } %>
 
       </tr>
       <% }) %>

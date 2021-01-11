@@ -5,7 +5,7 @@ var Cart = require("../models/cart");
 var Order = require("../models/checkout");
 const stripe = require('stripe')('sk_test_51H7gTXJPyl22FwkuMII2d29sIG6j8f8WOtlFCrtieze4ULa3VvMva255H7nZc9JwaT48gZREhfJte6F0ZPibQYTp004cq9HoXW');
 var fast2sms = require("fast-two-sms");
-var api = 'C24tnUhjNGYiWxkQmHpSRFgfluJszZ83OoDATv0VPwLI7Mb91KqK0ubBCLZOhr9Ps8XQWfgIedDEiGt1';
+var api = '5roiNDGfSzqtpuAMuiSvn14yTkNZL0NXePRw2tiZTUVgOohPrwNWBCRI8QcI';
 
 
 //INDEX ROUTE

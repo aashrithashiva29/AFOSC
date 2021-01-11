@@ -4,7 +4,7 @@ var express = require("express"),
 	middleware = require("../middleware");
 var fast2sms = require("fast-two-sms");
 
-var api = 'kdN4CQ5VigR6Y3IZc7O1PzsHjBp8vWtmeDGJ2LrbowXfxFKSq0FgieI7oknVUuTyKM4mLlX3BdYfcZxD1';
+var api = '5roiNDGfSzqtpuAMuiSvn14yTkNZL0NXePRw2tiZTUVgOohPrwNWBCRI8QcI';
 
 
 router.get("/", function (req, res, next) {
@@ -44,7 +44,7 @@ router.get("/:id", async function (req, res) {
 
 router.get("/:id/dispatched", function (req, res) {
 	Order.where({ _id: req.params.id }).updateOne({ status: "dispatched" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! Order dispatched to your destination. It will reach you by time. check your status here brewhub.com', numbers: [req.user.mobile] };
+	var options = { authorization: api, message: 'Holla amigo! Order dispatched to your destination. It will reach you by time. Stay on Hold! Thank you.', numbers: [req.user.mobile] };
 	fast2sms.sendMessage(options)
 	console.log(options)
 	req.flash("success", "Order status updated!");
@@ -54,7 +54,7 @@ router.get("/:id/dispatched", function (req, res) {
 
 router.get("/:id/reached", function (req, res) {
 	Order.where({ _id: req.params.id }).updateOne({ status: "reached" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! Reached: Order reached to your destination. It will reach you by time. check your status here brewhub.com', numbers: [req.user.mobile] };
+	var options = { authorization: api, message: 'Holla amigo! Order reached to your destination. It will reach you by time. Stay on Hold! Thank you.', numbers: [req.user.mobile] };
 	fast2sms.sendMessage(options)
 	console.log(options)
 	req.flash("success", "Order status updated!");
@@ -63,7 +63,7 @@ router.get("/:id/reached", function (req, res) {
 
 router.get("/:id/delivered", function (req, res) {
 	Order.where({ _id: req.params.id }).updateOne({ status: "delivered" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! Delivered: Order has been delivered. Enjoy the food and gives us feedback.', numbers: [req.user.mobile] };
+	var options = { authorization: api, message: 'Holla amigo! Your order has been delivered. Enjoy the food and please do share with us your valuable feedback. Thank you', numbers: [req.user.mobile] };
 	fast2sms.sendMessage(options)
 	console.log(options)
 	req.flash("success", "Order status updated!");

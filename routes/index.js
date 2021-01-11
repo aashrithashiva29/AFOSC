@@ -34,9 +34,9 @@ router.post("/register", function (req, res) {
 		typeOfUser: req.body.typeOfUser
 	});
 	//eval(require('locus'));
-	if (req.body.adminCode === 'admincode') {
-		newUser.isAdmin = true;
-	}
+	// if (req.body.adminCode === 'admincode') {
+	// 	newUser.isAdmin = true;
+	// }
 	User.register(newUser, req.body.password, function (err, user) {
 		if (err) {
 			console.log(err);
@@ -86,6 +86,7 @@ router.get("/users/:id", middleware.isLoggedIn, function (req, res) {
 				req.flash("error", "Something went wrong !");
 				res.redirect("/");
 			}
+			// console.log(orders[0].items);
 			res.render("users/show", { user: foundUser, orders: orders });
 		});
 	});
