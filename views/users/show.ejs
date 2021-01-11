@@ -5,7 +5,7 @@
 		<div class="col-md-4">
 			<div class="card align-items-center" style="margin-top:15px;">
 				<h4 class="card-title center"><%= user.username %></h4>
-				<img class="card-img-top" style={ width: 100%; height: 25vw; object-fit: cover; } src="<%= user.avatar %>" alt="user profile image">
+				<img class="card-img-top" style="{ width: 100%; height: 25vw; object-fit: cover; } src="<%= user.avatar %>" alt="user profile image">
 				<div class="card-description">
 					<label>Email: <a href="mailto:<%= user.email %>"><%= user.email %></a></label>
 				</div>
@@ -15,6 +15,7 @@
 			<p style="margin-top:15px;">
 				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 			</p>
+			<% if(!currentUser){ %>
 			<h5>
 				My Previous Orders...
 			</h5>
@@ -31,7 +32,7 @@
 						</ul>
 				<% }) %>
 			</ul>
-			
+			<% } %>
 		</div>
 	</div>
 </div>

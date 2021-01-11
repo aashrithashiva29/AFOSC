@@ -30,10 +30,16 @@ router.post("/register", function (req, res) {
 		username: req.body.username,
 		email: req.body.email,
 		mobile: req.body.mobileno,
-		avatar: "http://www.cityinvesto.com/wp-content/uploads/2019/12/52eabf633ca6414e60a7677b0b917d92-male-avatar-maker.jpg",
+		avatar: "hhttps://www.iconfinder.com/data/icons/children-avatar-flat/128/children_avatar-01-512.png",
 		typeOfUser: req.body.typeOfUser
 	});
-	//eval(require('locus'));
+	var password = req.body.password;
+	if(password.length<7){
+		req.flash("error","password must be minimum of 7 characters long.");
+		return res.redirect("back");
+	}
+	else{
+		//eval(require('locus'));
 	// if (req.body.adminCode === 'admincode') {
 	// 	newUser.isAdmin = true;
 	// }
@@ -48,6 +54,7 @@ router.post("/register", function (req, res) {
 			res.redirect("/items");
 		});
 	});
+	}
 });
 
 //=============

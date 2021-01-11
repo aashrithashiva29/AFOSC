@@ -5,7 +5,7 @@ var Feedback 	= require("../models/feedbacks");
 var middleware	= require("../middleware");
 
 //INDEX ROUTE
-router.get("/", function(req,res){
+router.get("/",middleware.isLoggedIn, function(req,res){
 	//console.log(req.user);
 	Feedback.find({},function(err,allfeedbacks){
 		if(err)
@@ -43,14 +43,14 @@ router.get("/new",middleware.isLoggedIn,function(req,res){
 
 
 //EDIT ROUTE
-router.get("/:id/edit",function(req,res){
+router.get("/:id/edit",middleware.isLoggedIn,function(req,res){
 	Feedback.findById(req.params.id, function(err,foundFeedback){
 		res.render("feedbacks/edit",{feedback: foundFeedback});
 	});
 });
 
 //UPDATE ROUTE
-router.put("/:id",function(req,res){
+router.put("/:id",middleware.isLoggedIn,function(req,res){
 	//find and update the correct feedback
 	Feedback.findByIdAndUpdate(req.params.id,req.body.feedback,function(err,updatedFeedback){
 		if(err)
@@ -63,7 +63,7 @@ router.put("/:id",function(req,res){
 });
 
 //DESTROY ROUTE
-router.delete("/:id" ,function(req,res){
+router.delete("/:id" ,middleware.isLoggedIn,function(req,res){
 	Feedback.findByIdAndRemove(req.params.id,function(err){
 		if(err)
 			res.redirect("back");
@@ -73,7 +73,4 @@ router.delete("/:id" ,function(req,res){
 		}
 	});
 });
-
-
-
 module.exports = router;

@@ -6,7 +6,7 @@ var express = require("express"),
 	Cart = require("../models/cart"),
 	middleware = require("../middleware");
 
-router.get("/", function (req, res, next) {
+router.get("/", middleware.isLoggedIn, function (req, res, next) {
 	if (!req.session.cart) {
 		return res.render("cart/index", { products: null });
 	}
@@ -16,7 +16,7 @@ router.get("/", function (req, res, next) {
 });
 
 
-router.get("/add-to-cart/:id", function (req, res, next) {
+router.get("/add-to-cart/:id",middleware.isLoggedIn, function (req, res, next) {
 	var itemId = req.params.id;
 	//console.log(itemId);
 	var cart = new Cart(req.session.cart ? req.session.cart : {});
@@ -32,7 +32,7 @@ router.get("/add-to-cart/:id", function (req, res, next) {
 });
 
 
-router.get("/remove-from-cart/:id", function (req, res, next) {
+router.get("/remove-from-cart/:id",middleware.isLoggedIn, function (req, res, next) {
 	var itemId = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : {});
 	Item.findById(itemId, function (err, item) {

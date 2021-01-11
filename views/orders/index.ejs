@@ -1,5 +1,15 @@
 <%- include ("../partials/header") %>
+<% if(typeof orders === "undefined" || orders.length===0){ %>
+  <div class="container">
+    <h1>
+      No orders placed yet !!
+    </h1>
+    <a href="/items" class="btn btn-secondary btn-outline">View items</a>
 
+  </div>
+  
+
+<% }else{ %>
 <div class="mx-5 mt-5">
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -55,5 +65,6 @@
   </table>
 
 </div>
+<% } %>
 
 <%- include ("../partials/footer") %>

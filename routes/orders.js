@@ -6,8 +6,8 @@ var fast2sms = require("fast-two-sms");
 
 var api = '5roiNDGfSzqtpuAMuiSvn14yTkNZL0NXePRw2tiZTUVgOohPrwNWBCRI8QcI';
 
-
-router.get("/", function (req, res, next) {
+//INDEX
+router.get("/",middleware.isLoggedIn, function (req, res, next) {
 	if (req.user.isAdmin) {
 		Order.find({}, function (err, allOrders) {
 			if (err)
@@ -27,7 +27,8 @@ router.get("/", function (req, res, next) {
 
 });
 
-router.get("/:id", async function (req, res) {
+//redirect to TRACK Page
+router.get("/:id",middleware.isLoggedIn, async function (req, res) {
 	try {
 		let order = await Order.findById(req.params.id)
 		// console.log(order);

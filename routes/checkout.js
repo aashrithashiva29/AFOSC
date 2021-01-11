@@ -9,7 +9,7 @@ var api = '5roiNDGfSzqtpuAMuiSvn14yTkNZL0NXePRw2tiZTUVgOohPrwNWBCRI8QcI';
 
 
 //INDEX ROUTE
-router.get("/", function (req, res, next) {
+router.get("/",middleware.isLoggedIn,function (req, res, next) {
     if (!req.session.cart) {
         return res.render("cart/pay", { products: null });
     }
@@ -18,7 +18,7 @@ router.get("/", function (req, res, next) {
     res.render("cart/pay", { items: arr, totalPrice: cart.totalPrice });
 });
 
-router.post("/", function (req, res) {
+router.post("/",middleware.isLoggedIn, function (req, res) {
     var cart = new Cart(req.session.cart);
     var arr = Object.values(cart.items);
     // console.log(arr)
@@ -108,27 +108,12 @@ router.post("/", function (req, res) {
                     }
 
                 });
-
-
-
             })
             .catch(err => console.log(err));
     } catch (err) {
         res.send(err);
     }
-
-
-
-
-
-
-
 });
-// cardName: req.body.cardName,
-// cardNumber: req.body.cardNumber,
-// cvv: req.body.cvv,
-// expireMonth: req.body.expireMonth,
-// expireYear: req.body.expireYear,
 
 module.exports = router;
 
