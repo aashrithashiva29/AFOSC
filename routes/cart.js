@@ -6,6 +6,7 @@ var express = require("express"),
 	Cart = require("../models/cart"),
 	middleware = require("../middleware");
 
+// VIEW CART
 router.get("/", middleware.isLoggedIn, function (req, res, next) {
 	if (!req.session.cart) {
 		return res.render("cart/index", { products: null });
@@ -15,7 +16,7 @@ router.get("/", middleware.isLoggedIn, function (req, res, next) {
 	res.render("cart/index", { items: arr, totalPrice: cart.totalPrice });
 });
 
-
+// ADD TO CART
 router.get("/add-to-cart/:id",middleware.isLoggedIn, function (req, res, next) {
 	var itemId = req.params.id;
 	//console.log(itemId);
@@ -31,7 +32,7 @@ router.get("/add-to-cart/:id",middleware.isLoggedIn, function (req, res, next) {
 	})
 });
 
-
+// REMOVE FROM CART
 router.get("/remove-from-cart/:id",middleware.isLoggedIn, function (req, res, next) {
 	var itemId = req.params.id;
 	var cart = new Cart(req.session.cart ? req.session.cart : {});

@@ -1,9 +1,7 @@
 var express 	= require("express");
 var router  	= express.Router();
-//var User	 	= require("../models/user");
 var Item	 	= require("../models/items");
 var middleware	= require("../middleware");
-
 
 //INDEX ROUTE
 router.get("/",middleware.isLoggedIn,function(req,res){

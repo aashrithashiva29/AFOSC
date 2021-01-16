@@ -77,7 +77,7 @@ router.get("/:id/cancel", function (req, res) {
 	fast2sms.sendMessage(options)
 	req.flash("success", "order has been cancelled");
 	res.redirect('back');
-})
+});
 
 
 

@@ -9,7 +9,7 @@ var api = '5roiNDGfSzqtpuAMuiSvn14yTkNZL0NXePRw2tiZTUVgOohPrwNWBCRI8QcI';
 
 
 //INDEX ROUTE
-router.get("/",middleware.isLoggedIn,function (req, res, next) {
+router.get("/", middleware.isLoggedIn, function (req, res, next) {
     if (!req.session.cart) {
         return res.render("cart/pay", { products: null });
     }
@@ -18,7 +18,7 @@ router.get("/",middleware.isLoggedIn,function (req, res, next) {
     res.render("cart/pay", { items: arr, totalPrice: cart.totalPrice });
 });
 
-router.post("/",middleware.isLoggedIn, function (req, res) {
+router.post("/", middleware.isLoggedIn, function (req, res) {
     var cart = new Cart(req.session.cart);
     var arr = Object.values(cart.items);
     // console.log(arr)
@@ -35,15 +35,12 @@ router.post("/",middleware.isLoggedIn, function (req, res) {
     // get data from form to post
     Date.prototype.toShortFormat = function () {
 
-        let monthNames = ["Jan", "Feb", "Mar", "Apr",
-            "May", "Jun", "Jul", "Aug",
+        let monthNames = ["Jan", "Feb", "Mar", "Apr","May", "Jun", "Jul", "Aug",
             "Sep", "Oct", "Nov", "Dec"];
 
         let day = this.getDate();
-
         let monthIndex = this.getMonth();
         let monthName = monthNames[monthIndex];
-
         let year = this.getFullYear();
 
         return `${day}-${monthName}-${year}`;
@@ -51,8 +48,6 @@ router.post("/",middleware.isLoggedIn, function (req, res) {
 
     var date = new Date().toShortFormat()
     console.log(date)
-
-
     try {
         stripe.customers
             .create({
@@ -79,13 +74,11 @@ router.post("/",middleware.isLoggedIn, function (req, res) {
                 })
             )
             .then(() => {
-
                 var options = { authorization: api, message: 'Holla amigo! Order placed. It will reach you by time. check your status here brewhub.com', numbers: [req.user.mobile] };
                 fast2sms.sendMessage(options)
                 console.log(options)
                 var newOrder = {
                     blockToDeliver: req.body.blockToDeliver,
-
                     items: items,
                     status: "ordered",
                     createdAt: date,
@@ -94,7 +87,6 @@ router.post("/",middleware.isLoggedIn, function (req, res) {
                         username: req.user.username
                     },
                     price: cart.totalPrice
-
                 };
 
                 Order.create(newOrder, function (err) {

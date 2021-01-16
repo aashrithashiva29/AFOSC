@@ -30,7 +30,7 @@ router.post("/register", function (req, res) {
 		username: req.body.username,
 		email: req.body.email,
 		mobile: req.body.mobileno,
-		avatar: "hhttps://www.iconfinder.com/data/icons/children-avatar-flat/128/children_avatar-01-512.png",
+		avatar: "https://cdn1.iconfinder.com/data/icons/children-avatar-flat/128/children_avatar-01-512.png",
 		typeOfUser: req.body.typeOfUser
 	});
 	var password = req.body.password;
