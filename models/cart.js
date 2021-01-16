@@ -14,7 +14,6 @@ module.exports = function Cart(oldcart) {
 		this.totalPrice += storedItem.item.price;
 		
 	};
-
 	this.remove = function (id) {
 		var storedItem = this.items[id];
 		if(storedItem.quantity === 1){
@@ -27,8 +26,7 @@ module.exports = function Cart(oldcart) {
 			this.totalItems--;
 			storedItem.quantity--;
 			storedItem.price = storedItem.item.price * storedItem.quantity;
-			this.totalPrice -= this.items[id].item.price;
-			
+			this.totalPrice -= this.items[id].item.price;	
 		}
 	};
 };
