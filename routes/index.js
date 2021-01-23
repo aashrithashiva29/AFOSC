@@ -11,8 +11,6 @@ var express = require("express"),
 router.get("/", function (req, res) {
 	res.render("home");
 
-
-
 });
 
 //==============
@@ -22,9 +20,7 @@ router.get("/register", function (req, res) {
 	res.render("register");
 });
 
-
 router.post("/register", function (req, res) {
-	// console.log(req.body.typeOfUser);
 	var newUser = new User({
 		userid: req.body.userid,
 		username: req.body.username,
@@ -37,8 +33,7 @@ router.post("/register", function (req, res) {
 	if(password.length<7){
 		req.flash("error","password must be minimum of 7 characters long.");
 		return res.redirect("back");
-	}
-	else{
+	}else{
 		//eval(require('locus'));
 	// if (req.body.adminCode === 'admincode') {
 	// 	newUser.isAdmin = true;

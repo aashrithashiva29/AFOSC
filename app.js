@@ -30,9 +30,7 @@ const stripe = require('stripe')('sk_test_51H7gTXJPyl22FwkuMII2d29sIG6j8f8WOtlFC
 
 //serving static assets
 app.use(express.static(__dirname + "/public"));
-
 app.use(methodOverride("_method"));
-
 app.locals.moment = require('moment');
 
 //set ejs to embed html in js

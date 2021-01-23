@@ -11,6 +11,7 @@ var OrderSchema = new mongoose.Schema({
   expireYear: Number,
   items: Object,
   status: String, 
+  orderId: Number,
   createdAt: String,
   author: {
     id: {

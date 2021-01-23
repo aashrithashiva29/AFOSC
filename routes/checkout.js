@@ -74,13 +74,15 @@ router.post("/", middleware.isLoggedIn, function (req, res) {
                 })
             )
             .then(() => {
-                var options = { authorization: api, message: 'Holla amigo! Order placed. It will reach you by time. check your status here brewhub.com', numbers: [req.user.mobile] };
+                var rand = Math.floor(Math.random() * Math.floor(5000));
+                var options = { authorization: api, message: 'Holla amigo! Order placed. Your Order Id is '+rand+'. Stay on hold!', numbers: [req.user.mobile] };
                 fast2sms.sendMessage(options)
-                console.log(options)
+                // console.log(options)
                 var newOrder = {
                     blockToDeliver: req.body.blockToDeliver,
                     items: items,
                     status: "ordered",
+                    orderId: rand,
                     createdAt: date,
                     author: {
                         id: req.user._id,

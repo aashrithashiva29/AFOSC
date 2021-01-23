@@ -43,23 +43,30 @@ router.get("/:id",middleware.isLoggedIn, async function (req, res) {
 
 });
 
-router.get("/:id/dispatched", function (req, res) {
-	Order.where({ _id: req.params.id }).updateOne({ status: "dispatched" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! Order dispatched to your destination. It will reach you by time. Stay on Hold! Thank you.', numbers: [req.user.mobile] };
-	fast2sms.sendMessage(options)
-	console.log(options)
-	req.flash("success", "Order status updated!");
-	res.redirect('back');
-
+router.get("/:id/dispatched", async function (req, res) {
+	try{
+		Order.where({ _id: req.params.id }).updateOne({ status: "dispatched" }).exec();
+		let order = await Order.findById(req.params.id)
+		var options = { authorization: api, message: 'Holla amigo! Order dispatched to your destination. It will reach you by time. Your Order id is '+order.orderId+'. Stay on Hold! Thank you!', numbers: [req.user.mobile] };
+		fast2sms.sendMessage(options)
+		// console.log(options)
+		req.flash("success", "Order status updated!");
+		res.redirect('back');
+	}
+	catch(e){}
 });
 
-router.get("/:id/reached", function (req, res) {
-	Order.where({ _id: req.params.id }).updateOne({ status: "reached" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! Order reached to your destination. It will reach you by time. Stay on Hold! Thank you.', numbers: [req.user.mobile] };
-	fast2sms.sendMessage(options)
-	console.log(options)
-	req.flash("success", "Order status updated!");
-	res.redirect('back');
+router.get("/:id/reached", async function (req, res) {
+	try{
+		Order.where({ _id: req.params.id }).updateOne({ status: "reached" }).exec();
+		let order = await Order.findById(req.params.id)
+		var options = { authorization: api, message: 'Holla amigo! Order reached to your destination. Your Order id is '+order.orderId+'. Thank you!', numbers: [req.user.mobile] };
+		fast2sms.sendMessage(options)
+		// console.log(options)
+		req.flash("success", "Order status updated!");
+		res.redirect('back');
+	}
+	catch(e){}
 });
 
 router.get("/:id/delivered", function (req, res) {
@@ -73,7 +80,7 @@ router.get("/:id/delivered", function (req, res) {
 
 router.get("/:id/cancel", function (req, res) {
 	Order.where({ _id: req.params.id }).updateOne({ status: "cancelled" }).exec();
-	var options = { authorization: api, message: 'Holla amigo! cancelled: Your order has beed cancelled. Feel free to gives us feedback.', numbers: [req.user.mobile] };
+	var options = { authorization: api, message: 'Holla amigo! cancelled: Your order has beed cancelled. Feel free to give us feedback.', numbers: [req.user.mobile] };
 	fast2sms.sendMessage(options)
 	req.flash("success", "order has been cancelled");
 	res.redirect('back');
